@@ -52,6 +52,9 @@ dependencies {
     implementation("com.squareup.okhttp3:logging-interceptor:4.11.0")
     api("com.redmadrobot.extensions:viewbinding-ktx:4.2.1-0")
 
+    //Socket
+    implementation("io.socket:socket.io-client:2.0.0")
+
     // Dagger Hilt
     implementation("com.google.dagger:hilt-android:2.49")
     kapt("com.google.dagger:hilt-android-compiler:2.49")

@@ -12,7 +12,7 @@ import retrofit2.http.Path
 
 interface ChatApi {
     companion object {
-        const val BASE_URL = "https://localhost:3001/api/v1/"
+        const val BASE_URL = "http://localhost:3001/api/v1/"
     }
 
     @GET("rooms/{roomId}/messages")

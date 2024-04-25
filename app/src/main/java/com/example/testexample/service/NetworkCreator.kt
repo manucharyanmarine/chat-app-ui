@@ -1,6 +1,5 @@
 package com.example.testexample.service
 
-import okhttp3.HttpUrl.Companion.toHttpUrl
 import okhttp3.Interceptor
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
@@ -16,7 +15,8 @@ class NetworkCreator @Inject constructor() {
             val request = chain.request()
 
             val newUrl = request.url.newBuilder()
-                .host(ChatApi.BASE_URL.toHttpUrl().host)
+                .host("localhost")
+                .port(3001)
                 .build()
 
             val updatedRequest = request.newBuilder()
@@ -27,14 +27,12 @@ class NetworkCreator @Inject constructor() {
         }
 
         val logging = HttpLoggingInterceptor().apply {
-            setLevel(
-                HttpLoggingInterceptor.Level.BODY
-            )
+            setLevel(HttpLoggingInterceptor.Level.BODY)
         }
 
         val okHttpClient = OkHttpClient.Builder()
-            .addNetworkInterceptor(logging)
             .addInterceptor(interceptor)
+            .addNetworkInterceptor(logging)
             .build()
 
         val instance: ChatApi by lazy {
