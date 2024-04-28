@@ -33,6 +33,7 @@ class ChatFragment : Fragment(R.layout.fragment_chat) {
         }
 
         viewModel.loginUser()
+//        viewModel.getMessages()
 
         with(binding) {
             rvChat.adapter = chatAdapter

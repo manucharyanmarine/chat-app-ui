@@ -15,7 +15,7 @@ class NetworkCreator @Inject constructor() {
             val request = chain.request()
 
             val newUrl = request.url.newBuilder()
-                .host("localhost")
+                .host("http://192.168.101.8")
                 .port(3001)
                 .build()
 
@@ -39,7 +39,6 @@ class NetworkCreator @Inject constructor() {
             val retrofit = Retrofit.Builder()
                 .baseUrl(ChatApi.BASE_URL)
                 .addConverterFactory(GsonConverterFactory.create())
-                .client(okHttpClient)
                 .build()
 
             retrofit.create(ChatApi::class.java)

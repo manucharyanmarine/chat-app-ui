@@ -2,14 +2,10 @@ package com.example.testexample
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.testexample.model.MessageList
-import com.example.testexample.model.MessageModel
 import com.example.testexample.model.MessageModelResponse
-import com.example.testexample.model.MessageResponse
 import com.example.testexample.model.UserLoginRequest
 import com.example.testexample.repository.ChatRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
@@ -35,9 +31,9 @@ class ChatViewModel @Inject constructor(
 //        }
 //    }
 
-    fun getMessages(roomId: String) {
+    fun getMessages() {
         viewModelScope.launch {
-            val result = chatRepository.getMessages(roomId).successOrNull()
+            val result = chatRepository.getMessages().successOrNull()
             if (result != null) _productList.value = result.messageList.messageModelResponses
 
         }

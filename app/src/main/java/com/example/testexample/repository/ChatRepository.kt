@@ -20,10 +20,10 @@ class ChatRepository @Inject constructor(
         emit(listOf("Product 1", "Product 2"))
     }
 
-    suspend fun getMessages(roomId: String): AppResult<MessageResponse> {
+    suspend fun getMessages(): AppResult<MessageResponse> {
         val response = chatApi.getMessages(
             "65b61d7a8db4edc72edb9362",
-            "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2MjBkNzdhZGExMDZiNDA5NWQ4YTRkMiIsIm5hbWUiOiJKb2huIiwiaWF0IjoxNzEzODY4NDkxfQ.GcGiy0vRK2qVpckoCAPt_8P2XdToHyiEX7pvFpG-upU"
+            "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2MjBkNzdhZGExMDZiNDA5NWQ4YTRkMiIsIm5hbWUiOiJKb2huIiwiaWF0IjoxNzEzODY4NDkxfQ.GcGiy0vRK2qVpckoCAPt_8P2XdToHyiEX7pvFpG-upU"
         )
         return try {
             AppResult.Success(response.body()!!)
@@ -38,6 +38,7 @@ class ChatRepository @Inject constructor(
         return try {
             AppResult.Success(response.body()!!)
         } catch (e: IOException) {
+            Log.d("1231231", "loginUser: ${e.message}")
             AppResult.Failure(e)
         }
     }

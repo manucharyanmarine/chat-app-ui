@@ -6,7 +6,7 @@ import java.net.URISyntaxException
 
 class SocketManager private constructor() {
     companion object {
-        private const val SERVER_URL = "http://localhost:3001"
+        private const val SERVER_URL = "http://192.168.101.8:3001"
 
         val instance: SocketManager by lazy { Holder.INSTANCE }
 
