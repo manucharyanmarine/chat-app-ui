@@ -3,6 +3,7 @@ package com.example.testexample.service
 import com.example.testexample.model.MessageResponse
 import com.example.testexample.model.UserLoginRequest
 import com.example.testexample.model.UserLoginResponse
+import com.google.gson.JsonNull
 import retrofit2.Response
 import retrofit2.http.Body
 import retrofit2.http.GET
@@ -23,6 +24,6 @@ interface ChatApi {
 
     @POST("users/login")
     suspend fun loginUser(
-        @Body userLoginRequest: UserLoginRequest
+        @Body userLoginRequest: Any
     ): Response<UserLoginResponse>
 }

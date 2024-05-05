@@ -6,8 +6,11 @@ import com.example.testexample.model.MessageResponse
 import com.example.testexample.model.UserLoginRequest
 import com.example.testexample.model.UserLoginResponse
 import com.example.testexample.service.ChatApi
+import com.google.gson.Gson
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
+import okhttp3.MediaType.Companion.toMediaTypeOrNull
+import okhttp3.RequestBody.Companion.toRequestBody
 import java.io.IOException
 import javax.inject.Inject
 import javax.inject.Singleton
@@ -33,8 +36,13 @@ class ChatRepository @Inject constructor(
     }
 
     suspend fun loginUser(loginRequest: UserLoginRequest): AppResult<UserLoginResponse> {
-        Log.d("TAG123", "getMessages: 5454545454")
-        val response = chatApi.loginUser(loginRequest)
+
+        Log.d("TAG123", loginRequest.toString())
+
+        val gson = Gson() // or any other JSON serializer you prefer
+        val json = gson.toJson(loginRequest)
+        val requestBody = json.toRequestBody("application/json".toMediaTypeOrNull())
+        val response = chatApi.loginUser(requestBody)
         return try {
             AppResult.Success(response.body()!!)
         } catch (e: IOException) {
